@@ -1,6 +1,9 @@
 # !/bin/python3
-# Python3 script to add one year to the Created date of the argument file
-# Usage: script.py <file>
+
+'''
+Python3 script to add one year to the Created date of the all the files in the argument directory.
+Usage: python3 main.py <directory>
+'''
 
 import os
 import sys
