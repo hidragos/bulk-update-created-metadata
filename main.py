@@ -7,7 +7,7 @@ Usage: python3 main.py <directory>
 
 import os
 import sys
-import time
+import time as timeUtil
 from subprocess import call
 
 
@@ -17,18 +17,18 @@ def add_year(file):
     '''
     # Get the file's creation date
     stat = os.stat(file)
-    created = stat.st_birthtime
+    date_created = stat.st_birthtime
 
     # Add one year to the creation date
-    created += 31536000
+    date_updated = date_created + 31536000
 
     # Format the date to MM/DD/YYYY
-    date = time.strftime('%m/%d/%Y', time.localtime(created))
-    t = time.strftime('%H:%M:%S', time.localtime(created))
+    date = timeUtil.strftime('%m/%d/%Y', timeUtil.localtime(date_updated))
+    time = timeUtil.strftime('%H:%M:%S', timeUtil.localtime(date_created))
 
-    # Example: command = 'SetFile -d ' + '"05/06/2019 ' + '22:44:33"' + file
     # Log date
-    command = 'SetFile -d ' + '"' + date + ' ' + t + '"' + ' ' + file
+    command = 'SetFile -d ' + '"' + date + \
+        ' ' + time + '"' + ' ' + file
     call(command, shell=True)
 
 
