@@ -32,12 +32,11 @@ def add_year(file):
     call(command, shell=True)
 
 
-def add_year_to_all_files():
+def add_year_to_all_files(directory):
     '''
     Adds one year to the Created date of all files in the argument directory
     '''
     # Get the directory
-    directory = sys.argv[1]
 
     # Get all files in the directory
     files = os.listdir(directory)
@@ -47,5 +46,23 @@ def add_year_to_all_files():
         add_year(file)
 
 
+def prompt_user():
+    '''
+    Prompts the user to confirm the operation
+    '''
+    print('This script will add one year to the Created date of all files in the argument directory.')
+    print('Are you sure you want to continue? (y/n)')
+    response = input()
+    if response == 'y':
+        return True
+    else:
+        return False
+
+
 if __name__ == '__main__':
-    add_year_to_all_files()
+    is_sure = prompt_user()
+    if is_sure is False:
+        sys.exit()
+
+    directory = sys.argv[1]
+    add_year_to_all_files(directory=directory)
